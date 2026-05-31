@@ -1,0 +1,116 @@
+{
+  "experiment": "exp13_hatexplain_safety_constrained_routing",
+  "dataset": "hatexplain",
+  "splits": {
+    "train_size": 15383,
+    "validation_size": 1922,
+    "test_size": 1924
+  },
+  "selection_rule": {
+    "selection_split": "validation",
+    "delta_f1_initial": 0.002,
+    "delta_f1_relaxed": 0.005,
+    "epsilon_fnr": 0.01,
+    "roberta_validation_macro_f1": 0.7896904995436016,
+    "roberta_validation_fnr": 0.1481156879929886,
+    "selection_status": "feasible_initial",
+    "delta_f1_used": 0.002,
+    "fallback_used": false
+  },
+  "selected_thresholds": {
+    "tau_threat": 0.65,
+    "tau_safe": 0.75
+  },
+  "best_f1_thresholds": {
+    "tau_threat": 0.69,
+    "tau_safe": 0.7
+  },
+  "systems": [
+    {
+      "system": "TF-IDF standalone",
+      "tau_threat": null,
+      "tau_safe": null,
+      "validation": {
+        "macro_f1": 0.7445484511946558,
+        "fnr": 0.26205083260297984,
+        "tier1_handled_percent": 100.0,
+        "tier2_escalated_percent": 0.0
+      },
+      "test": {
+        "macro_f1": 0.7738651375144434,
+        "fnr": 0.2224168126094571,
+        "tier1_handled_percent": 100.0,
+        "tier2_escalated_percent": 0.0
+      }
+    },
+    {
+      "system": "RoBERTa standalone",
+      "tau_threat": null,
+      "tau_safe": null,
+      "validation": {
+        "macro_f1": 0.7896904995436016,
+        "fnr": 0.1481156879929886,
+        "tier1_handled_percent": 0.0,
+        "tier2_escalated_percent": 100.0
+      },
+      "test": {
+        "macro_f1": 0.7911431634387482,
+        "fnr": 0.159369527145359,
+        "tier1_handled_percent": 0.0,
+        "tier2_escalated_percent": 100.0
+      }
+    },
+    {
+      "system": "symmetric tau=0.70",
+      "tau_threat": 0.7,
+      "tau_safe": 0.7,
+      "validation": {
+        "macro_f1": 0.7934413708206747,
+        "fnr": 0.16739702015775634,
+        "tier1_handled_percent": 58.94901144640999,
+        "tier2_escalated_percent": 41.05098855359001
+      },
+      "test": {
+        "macro_f1": 0.793248260903423,
+        "fnr": 0.17513134851138354,
+        "tier1_handled_percent": 61.43451143451143,
+        "tier2_escalated_percent": 38.565488565488565
+      }
+    },
+    {
+      "system": "best-F1 class-specific",
+      "tau_threat": 0.69,
+      "tau_safe": 0.7,
+      "validation": {
+        "macro_f1": 0.7939388836499169,
+        "fnr": 0.16652059596844873,
+        "tier1_handled_percent": 59.573361082206034,
+        "tier2_escalated_percent": 40.426638917793966
+      },
+      "test": {
+        "macro_f1": 0.7942428128700577,
+        "fnr": 0.1733800350262697,
+        "tier1_handled_percent": 62.62993762993763,
+        "tier2_escalated_percent": 37.37006237006237
+      }
+    },
+    {
+      "system": "constrained class-specific",
+      "tau_threat": 0.65,
+      "tau_safe": 0.75,
+      "validation": {
+        "macro_f1": 0.7883956648816413,
+        "fnr": 0.15249780893952672,
+        "tier1_handled_percent": 58.012486992715914,
+        "tier2_escalated_percent": 41.98751300728408
+      },
+      "test": {
+        "macro_f1": 0.7916394169819192,
+        "fnr": 0.1584938704028021,
+        "tier1_handled_percent": 60.13513513513513,
+        "tier2_escalated_percent": 39.86486486486486
+      }
+    }
+  ],
+  "grid_csv": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp13_hatexplain_safety_constrained_grid.csv"
+}

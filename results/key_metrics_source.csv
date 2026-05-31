@@ -1,0 +1,9 @@
+category,dataset,system,macro_f1,fnr,tier1_handled_percent,roberta_usage_percent,tier3_usage_percent,project_placement,interpretation
+main_cascade,HateXplain,TF-IDF standalone,0.7739,0.2224,100.00,0.00,,main_baseline,Cheap baseline; lower quality and higher FNR than RoBERTa.
+main_cascade,HateXplain,RoBERTa standalone,0.7911,0.1594,0.00,100.00,,main_baseline,Strong model baseline and Tier 2 reference.
+main_cascade,HateXplain,Best-F1 TF-IDF -> RoBERTa cascade,0.7942,0.1734,62.84,37.16,,main_result,Slightly improves Macro F1 over RoBERTa but worsens FNR.
+main_cascade,HateXplain,Safety-constrained TF-IDF -> RoBERTa cascade,0.7913,0.1497,59.98,40.02,,main_result,Matches RoBERTa-level Macro F1 and improves FNR while handling about 60% at Tier 1.
+main_cascade,OLID,TF-IDF standalone,0.7282,0.3583,100.00,0.00,,main_baseline,Cheap baseline; substantially weaker than RoBERTa.
+main_cascade,OLID,RoBERTa standalone,0.8105,0.2208,0.00,100.00,,main_baseline,Strong model baseline and Tier 2 reference.
+main_cascade,OLID,Best-F1 TF-IDF -> RoBERTa cascade,0.8090,0.2667,51.74,48.26,,main_result,Nearly matches RoBERTa Macro F1 but worsens FNR.
+main_cascade,OLID,Safety-constrained TF-IDF -> RoBERTa cascade,0.8059,0.2083,38.37,61.63,,main_result,Improves FNR with lower Tier 1 handling and small Macro F1 loss.

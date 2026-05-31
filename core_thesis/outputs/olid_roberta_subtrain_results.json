@@ -1,0 +1,32 @@
+{
+  "dataset": "christophsonntag/OLID",
+  "model": "roberta-base",
+  "validation_size": 0.1,
+  "max_length": 128,
+  "batch_size": 16,
+  "learning_rate": 2e-05,
+  "num_epochs": 3,
+  "best_epoch": 1,
+  "best_val_macro_f1": 0.4003623188405797,
+  "test_macro_f1": 0.4189189189189189,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.695493135356263,
+      "val_loss": 0.6929053183061531,
+      "val_macro_f1": 0.4003623188405797
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6936548898684098,
+      "val_loss": 0.6929037448871567,
+      "val_macro_f1": 0.4003623188405797
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.6943062649477248,
+      "val_loss": 0.6928149361208261,
+      "val_macro_f1": 0.4003623188405797
+    }
+  ]
+}

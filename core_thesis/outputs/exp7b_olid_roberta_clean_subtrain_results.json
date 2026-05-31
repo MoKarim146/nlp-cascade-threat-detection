@@ -1,0 +1,100 @@
+{
+  "dataset_name": "christophsonntag/OLID",
+  "model_name": "roberta-base",
+  "split_sizes": {
+    "official_train": 13240,
+    "subtrain": 10592,
+    "validation": 2648,
+    "official_test": 860
+  },
+  "random_state": 42,
+  "validation_size": 0.2,
+  "label_mapping": {
+    "NOT": 0,
+    "OFF": 1
+  },
+  "text_column": "tweet",
+  "training_settings": {
+    "epochs": 3,
+    "batch_size": 16,
+    "learning_rate": 2e-05,
+    "max_length": 128,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "warmup_steps": 198,
+    "gradient_clip_norm": 1.0,
+    "class_weight": "balanced",
+    "device": "mps"
+  },
+  "best_checkpoint": {
+    "path": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/models/roberta_olid_subtrain_clean",
+    "selected_by": "validation_macro_f1",
+    "best_epoch": 3,
+    "best_validation_macro_f1": 0.7658232957714364
+  },
+  "best_validation_metrics": {
+    "loss": 0.5562607244173267,
+    "macro_f1": 0.7658232957714364,
+    "fnr": 0.2318181818181818,
+    "prediction_counts": {
+      "SAFE": 1602,
+      "THREAT": 1046
+    }
+  },
+  "test_metrics": {
+    "loss": 0.4389054089508675,
+    "macro_f1": 0.8104683195592286,
+    "fnr": 0.22083333333333333,
+    "prediction_counts": {
+      "SAFE": 590,
+      "THREAT": 270
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.54519236772082,
+      "validation": {
+        "loss": 0.5078285373522934,
+        "macro_f1": 0.7558402738438175,
+        "fnr": 0.19090909090909092,
+        "prediction_counts": {
+          "SAFE": 1492,
+          "THREAT": 1156
+        }
+      }
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.42073341280086884,
+      "validation": {
+        "loss": 0.4973954209631466,
+        "macro_f1": 0.7410334085675248,
+        "fnr": 0.15681818181818183,
+        "prediction_counts": {
+          "SAFE": 1383,
+          "THREAT": 1265
+        }
+      }
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.3266580669755212,
+      "validation": {
+        "loss": 0.5562607244173267,
+        "macro_f1": 0.7658232957714364,
+        "fnr": 0.2318181818181818,
+        "prediction_counts": {
+          "SAFE": 1602,
+          "THREAT": 1046
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "model_dir": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/models/roberta_olid_subtrain_clean",
+    "results_json": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp7b_olid_roberta_clean_subtrain_results.json",
+    "validation_predictions_csv": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp7b_olid_roberta_validation_predictions.csv",
+    "test_predictions_csv": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp7b_olid_roberta_test_predictions.csv"
+  }
+}

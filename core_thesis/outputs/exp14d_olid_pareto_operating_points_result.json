@@ -1,0 +1,382 @@
+{
+  "experiment": "exp14d_olid_pareto_operating_points",
+  "dataset": "christophsonntag/OLID",
+  "selection_split": "internal_validation_from_official_train",
+  "official_test_usage": "final_evaluation_only_after_validation_thresholds_locked",
+  "used_saved_grid": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp14_olid_class_specific_grid.csv",
+  "used_saved_test_predictions": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp14_olid_clean_cascade_test_predictions.csv",
+  "retrained_models": false,
+  "refit_tfidf": false,
+  "detected_grid_columns": [
+    "tau_threat",
+    "tau_safe",
+    "validation_macro_f1",
+    "validation_fnr",
+    "validation_tier1_handled_percent",
+    "validation_tier2_escalated_percent",
+    "feasible_initial",
+    "feasible_relaxed"
+  ],
+  "pareto_frontier_rows": 33,
+  "roberta_validation": {
+    "macro_f1": 0.7658232957714364,
+    "fnr": 0.2318181818181818,
+    "tier1_handled_percent": 0.0,
+    "tier2_escalated_percent": 100.0,
+    "prediction_counts": {
+      "SAFE": 1602,
+      "THREAT": 1046
+    }
+  },
+  "operating_points": [
+    {
+      "system": "TF-IDF standalone",
+      "point_type": "baseline",
+      "tau": null,
+      "tau_threat": null,
+      "tau_safe": null,
+      "selection_source": "exp14_result",
+      "selection_status": "baseline",
+      "validation": {
+        "macro_f1": 0.7303977091950367,
+        "fnr": 0.3431818181818182,
+        "tier1_handled_percent": 100.0,
+        "tier2_escalated_percent": 0.0,
+        "prediction_counts": {
+          "SAFE": 1732,
+          "THREAT": 916
+        }
+      },
+      "test": {
+        "macro_f1": 0.7282219809765211,
+        "fnr": 0.35833333333333334,
+        "tier1_handled_percent": 100.0,
+        "tier2_escalated_percent": 0.0,
+        "prediction_counts": {
+          "SAFE": 599,
+          "THREAT": 261
+        }
+      }
+    },
+    {
+      "system": "RoBERTa standalone",
+      "point_type": "baseline",
+      "tau": null,
+      "tau_threat": null,
+      "tau_safe": null,
+      "selection_source": "exp14_result",
+      "selection_status": "baseline",
+      "validation": {
+        "macro_f1": 0.7658232957714364,
+        "fnr": 0.2318181818181818,
+        "tier1_handled_percent": 0.0,
+        "tier2_escalated_percent": 100.0,
+        "prediction_counts": {
+          "SAFE": 1602,
+          "THREAT": 1046
+        }
+      },
+      "test": {
+        "macro_f1": 0.8104683195592286,
+        "fnr": 0.22083333333333333,
+        "tier1_handled_percent": 0.0,
+        "tier2_escalated_percent": 100.0,
+        "prediction_counts": {
+          "SAFE": 590,
+          "THREAT": 270
+        }
+      }
+    },
+    {
+      "system": "symmetric cascade from exp14",
+      "point_type": "symmetric",
+      "tau": 0.68,
+      "tau_threat": null,
+      "tau_safe": null,
+      "selection_source": "exp14_result",
+      "selection_status": "baseline",
+      "validation": {
+        "macro_f1": 0.7684064308681672,
+        "fnr": 0.2534090909090909,
+        "tier1_handled_percent": 45.203927492447136,
+        "tier2_escalated_percent": 54.79607250755287,
+        "prediction_counts": {
+          "SAFE": 1653,
+          "THREAT": 995
+        }
+      },
+      "test": {
+        "macro_f1": 0.8127125568387426,
+        "fnr": 0.23333333333333334,
+        "tier1_handled_percent": 46.86046511627907,
+        "tier2_escalated_percent": 53.13953488372093,
+        "prediction_counts": {
+          "SAFE": 599,
+          "THREAT": 261
+        }
+      }
+    },
+    {
+      "system": "best_F1 class-specific",
+      "point_type": "class_specific",
+      "tau": null,
+      "tau_threat": 0.78,
+      "tau_safe": 0.61,
+      "selection_source": "selected_from_validation_grid",
+      "selection_status": "selected",
+      "validation": {
+        "macro_f1": 0.7707135976447923,
+        "fnr": 0.2897727272727273,
+        "tier1_handled_percent": 53.28549848942599,
+        "tier2_escalated_percent": 46.71450151057402
+      },
+      "test": {
+        "macro_f1": 0.8082898754357049,
+        "fnr": 0.2833333333333333,
+        "tier1_handled_percent": 56.395348837209305,
+        "tier2_escalated_percent": 43.604651162790695,
+        "confusion_matrix_rows_true_cols_pred_SAFE_THREAT": [
+          [
+            556,
+            64
+          ],
+          [
+            68,
+            172
+          ]
+        ],
+        "per_class": {
+          "SAFE": {
+            "precision": 0.8910256410256411,
+            "recall": 0.896774193548387,
+            "f1": 0.8938906752411575,
+            "support": 620
+          },
+          "THREAT": {
+            "precision": 0.7288135593220338,
+            "recall": 0.7166666666666667,
+            "f1": 0.7226890756302521,
+            "support": 240
+          }
+        },
+        "prediction_counts": {
+          "SAFE": 624,
+          "THREAT": 236
+        }
+      }
+    },
+    {
+      "system": "cost_first_safety",
+      "point_type": "class_specific",
+      "tau": null,
+      "tau_threat": 0.65,
+      "tau_safe": 0.73,
+      "selection_source": "from_exp14_safety_constrained_point",
+      "selection_status": "selected",
+      "validation": {
+        "macro_f1": 0.7647287512251457,
+        "fnr": 0.2397727272727272,
+        "tier1_handled_percent": 37.839879154078545,
+        "tier2_escalated_percent": 62.160120845921455
+      },
+      "test": {
+        "macro_f1": 0.8069416383636067,
+        "fnr": 0.22083333333333333,
+        "tier1_handled_percent": 35.0,
+        "tier2_escalated_percent": 65.0,
+        "confusion_matrix_rows_true_cols_pred_SAFE_THREAT": [
+          [
+            534,
+            86
+          ],
+          [
+            53,
+            187
+          ]
+        ],
+        "per_class": {
+          "SAFE": {
+            "precision": 0.909710391822828,
+            "recall": 0.8612903225806452,
+            "f1": 0.8848384424192212,
+            "support": 620
+          },
+          "THREAT": {
+            "precision": 0.684981684981685,
+            "recall": 0.7791666666666667,
+            "f1": 0.7290448343079922,
+            "support": 240
+          }
+        },
+        "prediction_counts": {
+          "SAFE": 587,
+          "THREAT": 273
+        }
+      }
+    },
+    {
+      "system": "quality_first_safety",
+      "point_type": "class_specific",
+      "tau": null,
+      "tau_threat": 0.71,
+      "tau_safe": 0.74,
+      "selection_source": "from_exp14b_recommended_point",
+      "selection_status": "selected",
+      "validation": {
+        "macro_f1": 0.7679339424449025,
+        "fnr": 0.2397727272727272,
+        "tier1_handled_percent": 31.57099697885196,
+        "tier2_escalated_percent": 68.42900302114803
+      },
+      "test": {
+        "macro_f1": 0.8100361217224085,
+        "fnr": 0.225,
+        "tier1_handled_percent": 28.953488372093023,
+        "tier2_escalated_percent": 71.04651162790697,
+        "confusion_matrix_rows_true_cols_pred_SAFE_THREAT": [
+          [
+            538,
+            82
+          ],
+          [
+            54,
+            186
+          ]
+        ],
+        "per_class": {
+          "SAFE": {
+            "precision": 0.9087837837837838,
+            "recall": 0.867741935483871,
+            "f1": 0.8877887788778878,
+            "support": 620
+          },
+          "THREAT": {
+            "precision": 0.6940298507462687,
+            "recall": 0.775,
+            "f1": 0.7322834645669292,
+            "support": 240
+          }
+        },
+        "prediction_counts": {
+          "SAFE": 592,
+          "THREAT": 268
+        }
+      }
+    },
+    {
+      "system": "safety_first",
+      "point_type": "class_specific",
+      "tau": null,
+      "tau_threat": 0.56,
+      "tau_safe": 0.71,
+      "selection_source": "selected_from_validation_grid",
+      "selection_status": "selected",
+      "validation": {
+        "macro_f1": 0.7567090238117768,
+        "fnr": 0.2227272727272727,
+        "tier1_handled_percent": 51.20845921450151,
+        "tier2_escalated_percent": 48.79154078549849
+      },
+      "test": {
+        "macro_f1": 0.7878908318003516,
+        "fnr": 0.20416666666666666,
+        "tier1_handled_percent": 49.18604651162791,
+        "tier2_escalated_percent": 50.813953488372086,
+        "confusion_matrix_rows_true_cols_pred_SAFE_THREAT": [
+          [
+            512,
+            108
+          ],
+          [
+            49,
+            191
+          ]
+        ],
+        "per_class": {
+          "SAFE": {
+            "precision": 0.9126559714795008,
+            "recall": 0.8258064516129032,
+            "f1": 0.8670618120237087,
+            "support": 620
+          },
+          "THREAT": {
+            "precision": 0.6387959866220736,
+            "recall": 0.7958333333333333,
+            "f1": 0.7087198515769945,
+            "support": 240
+          }
+        },
+        "prediction_counts": {
+          "SAFE": 561,
+          "THREAT": 299
+        }
+      }
+    },
+    {
+      "system": "target_50_compute",
+      "point_type": "class_specific",
+      "tau": null,
+      "tau_threat": 0.63,
+      "tau_safe": 0.68,
+      "selection_source": "selected_from_validation_grid",
+      "selection_status": "selected",
+      "validation": {
+        "macro_f1": 0.7644625116367445,
+        "fnr": 0.25,
+        "tier1_handled_percent": 50.0,
+        "tier2_escalated_percent": 50.0
+      },
+      "test": {
+        "macro_f1": 0.8091583124477861,
+        "fnr": 0.23333333333333334,
+        "tier1_handled_percent": 49.30232558139535,
+        "tier2_escalated_percent": 50.697674418604656,
+        "confusion_matrix_rows_true_cols_pred_SAFE_THREAT": [
+          [
+            540,
+            80
+          ],
+          [
+            56,
+            184
+          ]
+        ],
+        "per_class": {
+          "SAFE": {
+            "precision": 0.9060402684563759,
+            "recall": 0.8709677419354839,
+            "f1": 0.8881578947368421,
+            "support": 620
+          },
+          "THREAT": {
+            "precision": 0.696969696969697,
+            "recall": 0.7666666666666667,
+            "f1": 0.7301587301587301,
+            "support": 240
+          }
+        },
+        "prediction_counts": {
+          "SAFE": 596,
+          "THREAT": 264
+        }
+      }
+    }
+  ],
+  "interpretation": {
+    "max_validation_f1_point": "best_F1 class-specific",
+    "max_validation_f1": 0.7707135976447923,
+    "best_roberta_fnr_preservation_point": "safety_first",
+    "best_roberta_fnr_preservation_fnr": 0.2227272727272727,
+    "roberta_validation_macro_f1": 0.7658232957714364,
+    "roberta_validation_fnr": 0.2318181818181818,
+    "roberta_level_f1_and_fnr_with_tier2_lte_50_exists": false,
+    "roberta_level_f1_and_fnr_with_tier2_lte_50_grid_rows": 0
+  },
+  "outputs": {
+    "pareto_frontier_csv": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp14d_olid_pareto_frontier.csv",
+    "operating_points_csv": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp14d_olid_operating_points.csv",
+    "result_json": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp14d_olid_pareto_operating_points_result.json",
+    "figure_f1_vs_tier2": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/fig_exp14d_olid_f1_vs_tier2.png",
+    "figure_fnr_vs_tier2": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/fig_exp14d_olid_fnr_vs_tier2.png"
+  }
+}

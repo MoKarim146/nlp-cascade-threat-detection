@@ -1,0 +1,152 @@
+{
+  "dataset_name": "christophsonntag/OLID",
+  "split_sizes": {
+    "official_train": 13240,
+    "subtrain": 10592,
+    "validation": 2648,
+    "official_test": 860
+  },
+  "random_state": 42,
+  "tfidf_settings": {
+    "word_analyzer": "word",
+    "word_ngram_range": [
+      1,
+      2
+    ],
+    "word_max_features": 20000,
+    "char_analyzer": "char_wb",
+    "char_ngram_range": [
+      3,
+      5
+    ],
+    "char_max_features": 15000,
+    "sublinear_tf": true,
+    "min_df": 2,
+    "lowercase": true
+  },
+  "logistic_regression_settings": {
+    "C": 0.5,
+    "class_weight": "balanced",
+    "max_iter": 1000,
+    "solver": "lbfgs",
+    "random_state": 42
+  },
+  "roberta_model_path": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/models/roberta_olid_subtrain_clean",
+  "tfidf": {
+    "validation": {
+      "macro_f1": 0.7303977091950367,
+      "fnr": 0.3431818181818182,
+      "tier1_handled_percent": 100.0,
+      "tier2_escalated_percent": 0.0,
+      "prediction_counts": {
+        "SAFE": 1732,
+        "THREAT": 916
+      }
+    },
+    "test": {
+      "macro_f1": 0.7282219809765211,
+      "fnr": 0.35833333333333334,
+      "tier1_handled_percent": 100.0,
+      "tier2_escalated_percent": 0.0,
+      "prediction_counts": {
+        "SAFE": 599,
+        "THREAT": 261
+      }
+    }
+  },
+  "roberta": {
+    "validation": {
+      "macro_f1": 0.7658232957714364,
+      "fnr": 0.2318181818181818,
+      "tier1_handled_percent": 0.0,
+      "tier2_escalated_percent": 100.0,
+      "prediction_counts": {
+        "SAFE": 1602,
+        "THREAT": 1046
+      }
+    },
+    "test": {
+      "macro_f1": 0.8104683195592286,
+      "fnr": 0.22083333333333333,
+      "tier1_handled_percent": 0.0,
+      "tier2_escalated_percent": 100.0,
+      "prediction_counts": {
+        "SAFE": 590,
+        "THREAT": 270
+      }
+    }
+  },
+  "symmetric_cascade": {
+    "selected_tau": 0.68,
+    "validation": {
+      "macro_f1": 0.7684064308681672,
+      "fnr": 0.2534090909090909,
+      "tier1_handled_percent": 45.203927492447136,
+      "tier2_escalated_percent": 54.79607250755287,
+      "prediction_counts": {
+        "SAFE": 1653,
+        "THREAT": 995
+      }
+    },
+    "test": {
+      "macro_f1": 0.8127125568387426,
+      "fnr": 0.23333333333333334,
+      "tier1_handled_percent": 46.86046511627907,
+      "tier2_escalated_percent": 53.13953488372093,
+      "prediction_counts": {
+        "SAFE": 599,
+        "THREAT": 261
+      }
+    }
+  },
+  "best_f1_class_specific_cascade": {
+    "tau_threat": 0.78,
+    "tau_safe": 0.61,
+    "validation": {
+      "macro_f1": 0.7707135976447923,
+      "fnr": 0.2897727272727273,
+      "tier1_handled_percent": 53.28549848942599,
+      "tier2_escalated_percent": 46.71450151057402
+    },
+    "test": {
+      "macro_f1": 0.8082898754357049,
+      "fnr": 0.2833333333333333,
+      "tier1_handled_percent": 56.395348837209305,
+      "tier2_escalated_percent": 43.604651162790695,
+      "prediction_counts": {
+        "SAFE": 624,
+        "THREAT": 236
+      }
+    }
+  },
+  "safety_constrained_class_specific_cascade": {
+    "tau_threat": 0.65,
+    "tau_safe": 0.73,
+    "validation": {
+      "macro_f1": 0.7647287512251457,
+      "fnr": 0.23977272727272728,
+      "tier1_handled_percent": 37.839879154078545,
+      "tier2_escalated_percent": 62.160120845921455
+    },
+    "test": {
+      "macro_f1": 0.8069416383636067,
+      "fnr": 0.22083333333333333,
+      "tier1_handled_percent": 35.0,
+      "tier2_escalated_percent": 65.0,
+      "prediction_counts": {
+        "SAFE": 587,
+        "THREAT": 273
+      }
+    }
+  },
+  "selection_status": "feasible_initial",
+  "delta_f1_initial": 0.002,
+  "delta_f1_relaxed": 0.005,
+  "delta_f1_used": 0.002,
+  "epsilon_fnr": 0.01,
+  "outputs": {
+    "grid_csv": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp14_olid_class_specific_grid.csv",
+    "result_json": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp14_olid_clean_cascade_package_result.json",
+    "test_predictions_csv": "/Users/mohamedkarim/Desktop/Thesis_Threat_Detection/core_thesis/outputs/exp14_olid_clean_cascade_test_predictions.csv"
+  }
+}
