@@ -83,11 +83,3 @@ No external API key or model checkpoint required for the public checks. Full ret
 - Full reproducibility of transformer training depends on hardware, seed sensitivity, and Hugging Face model availability
 
 ---
-
-## CV Bullet Versions
-
-**Short version:**
-> Cost-Aware Cascaded NLP for Linguistic Threat Detection — Built an API-free NLP pipeline comparing TF-IDF + Logistic Regression, RoBERTa, and confidence-based cascade routing for hate-speech/threat detection, evaluating Macro F1, false-negative rate, and transformer-inference reduction.
-
-**Long version:**
-> Developed a cost-aware cascaded NLP system for linguistic threat detection using TF-IDF + Logistic Regression and fine-tuned RoBERTa. Designed safety-constrained routing logic to reduce expensive transformer inference on high-confidence samples while explicitly tracking Macro F1, recall, false-negative rate, and routing percentage across two public datasets (HateXplain, OLID). The safety-constrained cascade routes 38–60% of examples to the cheap CPU classifier while achieving lower false-negative rates than the transformer-only baseline. Packaged the project for public GitHub release with reproducible scripts, 23 automated tests, and API-free documentation.
