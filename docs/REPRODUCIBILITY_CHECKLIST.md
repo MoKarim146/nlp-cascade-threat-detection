@@ -12,7 +12,7 @@ These commands use repository code and saved result artifacts. They do not requi
 
 ## Requires Saved Artifacts
 
-- Generated summaries in `results/` and `docs/results_summary.md` depend on committed files under `core_thesis/outputs/` and curated metrics in `results/key_metrics_source.csv`.
+- Generated summaries in `results/` and `docs/results_summary.md` are generated from curated metrics in `results/key_metrics_source.csv`. Experiment inventories and reproducibility reports additionally read committed files under `core_thesis/outputs/`.
 - Missing metrics must stay blank. Do not infer, estimate, or invent values.
 - When updating result documentation, cite the exact script and output file that produced the numbers.
 
