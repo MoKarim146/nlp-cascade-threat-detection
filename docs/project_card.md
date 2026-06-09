@@ -1,85 +1,50 @@
 # Project Card: Cost-Aware Cascaded NLP for Linguistic Threat Detection
 
----
+## Intended Use
 
-## Problem
+This repository is intended as an independent AI/NLP portfolio project demonstrating cost-aware text classification, local reproducibility practices, and evaluation of cascaded routing for linguistic threat or hate-speech detection research.
 
-Transformer classifiers are strong but expensive. Running every input through a fine-tuned RoBERTa model is unnecessary: many examples are easy enough for a cheap CPU classifier to handle correctly. The question is how to route intelligently — and how to do it safely when false negatives (missed threats) are especially costly.
+The public workflow is suitable for reviewing the project structure, reading saved result summaries, running smoke checks, and inspecting how TF-IDF, RoBERTa, and cascade routing are compared.
 
----
+## Not Intended Use
 
-## Approach
+This repository is not a production moderation system, safety-critical threat-detection service, or deployable policy enforcement tool. The saved models and thresholds should not be used to make real-world decisions without domain-specific validation, bias review, monitoring, and operating-point selection.
 
-Build a two-tier cascade:
+The public workflow is not intended to call paid external APIs or depend on private provider credentials.
 
-- **Tier 1**: TF-IDF (word + character n-grams) + Logistic Regression — fast, CPU-only, trained in seconds
-- **Tier 2**: fine-tuned `roberta-base` — stronger, GPU-accelerated, reserved for uncertain examples
+## Datasets
 
-Routing uses class-specific confidence thresholds (`τ_threat`, `τ_safe`) selected on a held-out validation set. The selection protocol is safety-constrained: the cascade must not increase the false-negative rate by more than `ε = 0.01` relative to the RoBERTa-only baseline before the cost objective (minimise Tier 2 usage) is optimised.
+- HateXplain, using official train, validation, and test splits.
+- OLID, using the official train split with an internal validation split.
 
-Experiments run on two public datasets: **HateXplain** and **OLID** (Offensive Language Identification Dataset).
+Raw datasets are not committed to the repository. Dataset use remains governed by the original dataset licenses and access terms.
 
----
+## Evaluation Metrics
 
-## Core Architecture
+The project reports Macro F1, false-negative rate (FNR), per-class recall where available, Tier 1 handled percentage, and RoBERTa usage percentage. Missing metrics are intentionally left blank and must not be invented.
 
-```
-Input text
-  → TF-IDF + Logistic Regression (Tier 1)
-    → confidence ≥ threshold? → accept Tier 1 prediction (cheap)
-    → confidence < threshold? → RoBERTa (Tier 2)  →  final prediction
-```
+## Main Limitations
 
-Thresholds are asymmetric: the THREAT class uses a separate threshold from the SAFE class, reflecting that false negatives on threats are costlier than false negatives on safe examples.
+- Results depend on saved outputs from prior local experiments.
+- Full transformer retraining requires additional hardware and dataset setup.
+- Hate-speech and offensive-language labels can be noisy and may encode annotation bias.
+- Thresholds selected for one dataset or domain may not transfer to another.
+- Latency and throughput claims are hardware-dependent and should be rerun in the target environment.
 
----
+## Safety Notes
 
-## Main Results
+False negatives are treated as especially important because a missed threat can be costly. The cascade therefore tracks FNR alongside Macro F1 and routing percentage.
 
-All numbers are from saved output files. No metrics are invented.
+This project should be read as an ML engineering experiment, not as evidence that automated threat detection is sufficient for high-stakes moderation or safety decisions.
 
-| Dataset | System | Macro F1 | FNR | Tier 1 handled |
-|---|---|---|---|---|
-| HateXplain | TF-IDF standalone | 0.7739 | 0.2224 | 100% |
-| HateXplain | RoBERTa standalone | 0.7911 | 0.1594 | 0% |
-| HateXplain | Safety-constrained cascade | 0.7913 | **0.1497** | **60%** |
-| OLID | TF-IDF standalone | 0.7282 | 0.3583 | 100% |
-| OLID | RoBERTa standalone | 0.8105 | 0.2208 | 0% |
-| OLID | Safety-constrained cascade | 0.8059 | **0.2083** | **38%** |
+## Reproducibility Status
 
-The safety-constrained cascade routes 38–60% of examples to the cheap CPU classifier and achieves a **lower false-negative rate than the transformer-only baseline** on both datasets.
-
----
-
-## Engineering Decisions
-
-- **Class-specific thresholds** rather than a single symmetric threshold — threat and safe predictions have different confidence profiles
-- **Validation-only threshold selection** — thresholds are locked before the test set is touched; no test-set leakage
-- **Safety-first constraint** — the FNR constraint is enforced before the cost objective; cheapness never overrides safety
-- **Cascade framing tracks cost explicitly** — routing percentage is reported alongside F1 and FNR, not just accuracy
-- **API-free public packaging** — external LLM tiers are disabled; the public workflow runs on saved outputs without any API key
-
----
-
-## Reproducibility
+The public checks run without datasets, checkpoints, GPU, or external API keys:
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
 python scripts/smoke_test.py
 python scripts/collect_results.py
 pytest -q
 ```
 
-No external API key or model checkpoint required for the public checks. Full retraining requires GPU/MPS and dataset downloads from Hugging Face.
-
----
-
-## Limitations
-
-- Dataset labels reflect annotation decisions and may encode bias
-- Thresholds selected on one domain may not transfer to another
-- False negatives are especially important in safety-critical settings; they are tracked explicitly but any production deployment would need its own operating-point selection
-- Full reproducibility of transformer training depends on hardware, seed sensitivity, and Hugging Face model availability
-
----
+Summary tables are regenerated from saved artifacts and curated metric sources already in the repository. Optional full RoBERTa retraining requires dataset downloads and GPU/MPS/CUDA-capable hardware.
