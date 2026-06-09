@@ -4,8 +4,17 @@ A compact NLP/ML engineering project comparing TF-IDF, RoBERTa, and cost-aware c
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![CI](https://github.com/mohamedkarim77/nlp-cascade-threat-detection/actions/workflows/smoke-test.yml/badge.svg)
+![CI](https://github.com/MoKarim146/nlp-cascade-threat-detection/actions/workflows/smoke-test.yml/badge.svg)
 ![API](https://img.shields.io/badge/external%20API-not%20required-lightgrey)
+
+---
+
+## How To Read This Repo
+
+- Start with this `README.md` for the project story, architecture, key result, and quickstart.
+- Use [`results/summary_tables.md`](results/summary_tables.md) for generated result tables from saved artifacts.
+- Use [`docs/`](docs/) for architecture, reproducibility, project background, limitations, and release-scope notes.
+- Run `python scripts/smoke_test.py`, `python scripts/collect_results.py`, and `pytest -q` for safe local checks.
 
 ---
 
@@ -24,7 +33,7 @@ A compact NLP/ML engineering project comparing TF-IDF, RoBERTa, and cost-aware c
 The safety-constrained cascade routes **38–60% of examples to the cheap CPU classifier** while also **reducing the false-negative rate** compared to running the transformer on every example — on both datasets.
 
 | Dataset | System | Macro F1 | FNR | Tier 1 % | RoBERTa % |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | HateXplain | TF-IDF standalone | 0.7739 | 0.2224 | 100% | 0% |
 | HateXplain | RoBERTa standalone | 0.7911 | 0.1594 | 0% | 100% |
 | HateXplain | Best-F1 cascade | 0.7942 | 0.1734 | 63% | 37% |
