@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it as research software."
+title: "Cost-Aware Cascaded NLP for Linguistic Threat Detection"
+authors:
+  - given-names: "Mohamed"
+    family-names: "Karim"
+version: "1.0.0"
+url: "https://github.com/MoKarim146/nlp-cascade-threat-detection"
+license: "MIT"
